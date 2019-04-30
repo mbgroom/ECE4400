@@ -11,11 +11,9 @@ def generate_numbers(_range, filename, tn):
 	filename 	: Name of the file
 	tn		: total numbers to be generated'''
 
-	f = open(filename, "w+")
+	f = open(filename, "wb")
 	for i in range(tn): 
-		f.write('{}'.format(random.randint(_range[0],_range[1])))
-		f.write("\n")
-
+		f.write((random.randint(_range[0],_range[1])).to_bytes(1,"big"))
 
 def generate_exp(filename, _range, pr, tn, hn):
 	
@@ -27,7 +25,7 @@ def generate_exp(filename, _range, pr, tn, hn):
 	tn 		: total numbers
 	hn 		: number of high priority numbers '''
 
-	f = open(filename,"w+")
+	f = open(filename,"wb")
 	x = list()
 	for i in range(tn):
 		if(i < hn):
@@ -38,6 +36,4 @@ def generate_exp(filename, _range, pr, tn, hn):
 	np.random.shuffle(np.array(x))
 
 	for i in x:
-		f.write('{}'.format(i))
-		f.write("\n")
-
+		f.write(i.to_bytes(1,"big")) 
